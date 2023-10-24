@@ -26,21 +26,13 @@ struct LoginView: View {
                     .frame(width: 220, height: 100)
                 
                 //text fields
-                VStack {
+                VStack(spacing: 16) {
                     TextField("Enter your email", text: $email)
                         .autocapitalization(.none)
-                        .font(.subheadline)
-                        .padding(12)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(10)
-                        .padding(.horizontal, 24)
+                        .modifier(TextFieldModifier())
                     
                     SecureField("Enter your password", text: $password)
-                        .font(.subheadline)
-                        .padding(12)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(10)
-                        .padding(.horizontal, 24)
+                        .modifier(TextFieldModifier())
                     
                 }
                 
@@ -60,13 +52,7 @@ struct LoginView: View {
                     print("Login")
                 } label: {
                     Text("Login")
-                        .font(.subheadline)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .tracking(1)
-                        .frame(width: 360, height: 44)
-                        .background(.blue)
-                        .cornerRadius(8)
+                        .modifier(ActionBtnModifier())
                         
                 }
                 .padding(.vertical)
@@ -105,7 +91,8 @@ struct LoginView: View {
                 Divider()
                 
                 NavigationLink {
-                    Text("Sign Up")
+                    AddEmailView()
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     HStack(spacing: 3){
                         Text("Don't have an account yet?")
